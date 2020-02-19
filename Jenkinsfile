@@ -9,9 +9,9 @@ node {
     sh 'docker build -t nginx-test .'   
    }
    stage('Stop existing container'){
-    sh 'docker container stop nginx-test && sleep 12'
+    sh 'docker container stop nginx-test && sleep 12 || echo "No such container: nginx-test  ... continuing anyway!"'
    }
    stage('Docker run'){
-    sh 'docker container run --rm -d -p 81:80 -l traefik.http.routers.nginx.rule=Host(\\`nginx.docker.nas\\`)" --name nginx-test nginx-test:latest'
+    sh 'docker container run --rm -d -p 81:80 -l "traefik.http.routers.nginx.rule=Host(\\`nginx.docker.nas\\`)" --name nginx-test nginx-test:latest'
    }
 }
