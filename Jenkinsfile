@@ -12,6 +12,6 @@ node {
     sh 'docker container stop nginx-test && sleep 12'
    }
    stage('Docker run'){
-    sh 'docker container run --rm -d -p 8080:80 --name nginx-test nginx-test:latest'
+    sh 'docker container run --rm -d -p 81:80 -l traefik.http.routers.nginx.rule=Host(\`nginx.docker.localhost\`)" --name nginx-test nginx-test:latest'
    }
 }
