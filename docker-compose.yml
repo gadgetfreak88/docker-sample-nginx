@@ -1,0 +1,14 @@
+---
+version: '3'
+
+services:
+  nginx-test:
+    image: nginx-test:latest
+    restart: always
+    ports:
+      - "81:80"
+    labels:
+      - "traefik.http.routers.whoami.rule=Host(`whoami.docker.localhost`)"
+    healthcheck:
+      test: ["CMD", "nc" ,"-z", "127.0.0.1", "80"]
+      interval: 15s
