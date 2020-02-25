@@ -8,7 +8,7 @@ services:
     ports:
       - "81:80"
     labels:
-      - "traefik.http.routers.whoami.rule=Host(`whoami.docker.localhost`)"
+      - "traefik.http.routers.whoami.rule=Host(`nginx.docker.localhost`)"
     healthcheck:
       test: ["CMD", "nc" ,"-z", "127.0.0.1", "80"]
       interval: 15s
